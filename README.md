@@ -1,133 +1,98 @@
-⚡ Power System Anomaly Detection App
+# ⚡ Power System Anomaly Detection App
+
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue)  
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-TensorFlow%2C%20RandomForest%2C%20SupportVectorMachine%2C%20Autoencoder-orange)  
+![Streamlit](https://img.shields.io/badge/Streamlit+-success)  
 
 
 
+## 🔥 Overview
 
-🌟 Overview
-The Power System Anomaly Detection App is a machine learning-powered application designed to detect and visualize anomalies in power systems in real time. This tool provides operators with critical insights to ensure system reliability and prevent failures.
+The **Power System Anomaly Detection App** is a machine learning-powered dashboard designed to detect and visualize anomalies such as cyberattacks on smart power systems in real time. This tool provides operators with critical insights to ensure system reliability, prevent failures and improve response time to stop cyber security attacks on the power system.
 
-🚀 Features
-Real-Time Anomaly Detection:
-Detects anomalies using a Random Forest binary classification model.
-Supports unsupervised learning with autoencoders for anomaly detection.
-Simulated Real-Time Data Stream:
-Generates data dynamically based on historical system data for testing and demonstrations.
-Dynamic Visualization:
-Live graphs showing critical features such as bus voltage, current magnitude, and system impedance.
-Event Log:
-Logs detected anomalies with timestamps and affected feature values.
-Interactive Dashboard:
-Built with Flask and Chart.js for an intuitive user experience.
-🛠️ Technologies
-This app is built using:
+---
 
-Backend: Flask
-Machine Learning: Scikit-learn, Autoencoders
-Data Visualization: Matplotlib, Chart.js
-Data Handling: Pandas, NumPy
-APIs:
-Custom APIs for real-time streaming and anomaly detection
-Deployment: Localhost or cloud platforms like Heroku and AWS
-📂 Repository Structure
-bash
-Copy code
-.
-├── app.py                    # Main Flask application
-├── requirements.txt          # Python dependencies
+## 🚀 Features
+- **📊 Interactive Dashboard**:
+  
+  The app provides a user-friendly dashboard built stream to visualize key features of an electrical power system, notify users of detected anomalies, and display event log data of anomalies detected.
+  - Uses a trained Random Forest binary classification model to detect anomalies.  
+- **Simulated Real-Time Data Stream**:
+  - Generates data dynamically based on historical system data for testing and demonstrations.
+- **Dynamic Visualization**:
+  - Live graphs showing critical features such as bus voltage  
+- **Event Log**:
+  - Log display of detected anomalies with timestamps and affected feature values. Log data can be downloaded from the dashboard in .csv format for further analaysis. 
+- **🌟 Future Enhancements**:
+  - Deployment and integration with power system operators SCADA system/IoT for actual system monitoring and anomaly detection.
+  - Multiclass model training to predict the type of anomally to operator
+  - Add predictive maintenance capabilities.
+  - AExtend visualization for additional metrics (e.g., power factor, harmonic distortion).
+
+---
+
+## 🛠️ Technologies
+
+This app is built with the following technologies:
+
+- **Backend + Frontend**: Streamlit
+- **Machine Learning**: TensorFlow, XGBoost, RandomForest, IsolationForest, Autoencoder
+- **Data Visualization**: Matplotlib
+
+---
+
+## 📂 Repository Structure
+
+├── ML training + Data        # ML training scripts and data files
+
+│   ├── Data                  # Raw and processed labelled data files
+
+
+├── webapp                    # Files for local web app deployment
+
+│   ├── app.py                # Python app for power system anomally detection
+
+
 ├── README.md                 # Project documentation
-├── templates/
-│   ├── dashboard.html        # Dashboard for visualization
-├── static/
-│   ├── styles.css            # Custom CSS for styling
-├── models/
-│   ├── random_forest_model.pkl # Trained Random Forest model
-│   ├── autoencoder_model.pkl  # Trained Autoencoder model
-├── data/
-│   ├── powersys_data.csv      # Historical power system data
-├── .env                      # Environment variables (not included in GitHub)
-🚀 Getting Started
-Prerequisites
-Python 3.8 or later
-Install dependencies:
-bash
-Copy code
-pip install -r requirements.txt
-Running the App
-Start the Flask server:
-bash
-Copy code
-python app.py
-Access the app: Open your browser and navigate to http://127.0.0.1:5000.
-⚙️ Features Demo
-📊 Real-Time Visualization
-The app dynamically visualizes key power system metrics, including:
 
-Bus voltage phase angle
-Current phase magnitude
-Impedance values
-Frequency and frequency delta
-🔔 Anomaly Detection
-The app uses:
+---
 
-Supervised Learning: Random Forest model for binary anomaly detection.
-Unsupervised Learning: Autoencoders to detect deviations from normal system behavior.
-📋 Event Logging
-Automatically logs all detected anomalies with:
-Timestamp
-Anomaly description
-Affected feature values
-🧑‍💻 Development Workflow
-Training the Models
-Data Preprocessing:
+## 🚀 Getting Started
 
-Load the dataset from data/powersys_data.csv.
-Separate features and target (marker column).
-Standardize the data using StandardScaler.
-Train the Models:
+### Prerequisites:
+1. Python 3.12 or later
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
 
-Random Forest Binary Classifier:
-python
-Copy code
-from sklearn.ensemble import RandomForestClassifier
-rf_model = RandomForestClassifier()
-rf_model.fit(X_train, y_train)
-Autoencoder (Unsupervised):
-python
-Copy code
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Dense
+### Running the App locally;
+1. Start the Streamlit server: Run below code from the app directory in terminal
+    ```bash
+    streamlit run app.py
 
-autoencoder = Sequential([
-    Dense(128, activation='relu', input_dim=X_train.shape[1]),
-    Dense(64, activation='relu'),
-    Dense(128, activation='relu'),
-    Dense(X_train.shape[1], activation='sigmoid')
-])
-autoencoder.compile(optimizer='adam', loss='mse')
-autoencoder.fit(X_train, X_train, epochs=50, batch_size=32)
-Save the Models:
+2. Access the app: App opens dashboard in default browser automatically, and URL is displayed in the terminal as well.
 
-python
-Copy code
-import joblib
-joblib.dump(rf_model, "models/random_forest_model.pkl")
-autoencoder.save("models/autoencoder_model.pkl")
-🌟 Future Enhancements
-Support multi-class anomaly detection.
-Extend visualization for additional metrics (e.g., power factor, harmonic distortion).
-Integrate IoT sensors for real-time monitoring.
-Add predictive maintenance capabilities.
-🤝 Contributing
-We welcome contributions! Please follow these steps:
+---
 
-Fork the repository.
-Create a new branch (feature-name).
-Commit your changes.
-Push to your fork and submit a pull request.
-📄 License
+## 🧑‍💻 Machine Learning Development Workflow
+### Data sources and processing:
+- The data source for this project is from the [Power System Attack Datasets by the Mississippi State University and Oak Ridge National Laboratory - 4/15/2014](https://sites.google.com/a/uah.edu/tommy-morris-uah/ics-data-sets) .It has three data set for anomally classification: binary, three-class, and multi-class. The data set I used in the implementation model was the binary data set(Normal operation vs Attack Events).
+- This dataset is simulated and includes status flags and power system parameters monitored by 4 Intelligent Electronic Devices that can switch circuit breakers on or off automatically or operated manually. An overview of the power system and monitoring and control devices are as seen below:
+  
+![image](https://github.com/user-attachments/assets/93f62811-387e-4a38-89af-f742c667eb39)
+- Comprehensive documentation of the data set can be found [here](http://www.google.com/url?q=http%3A%2F%2Fwww.ece.uah.edu%2F~thm0009%2Ficsdatasets%2FPowerSystem_Dataset_README.pdf&sa=D&sntz=1&usg=AOvVaw3t-soxdA-27GPUSRG1JP_Q) .
+- The cleaned labelled binary classification dataset has the follow properties:
+  - 128 features of which 128 were used in training the ML models
+  - 72074 rows of data  
+### ML Model selection and training:
+3 supervised learning ML Models and 3 unsupervised learning ML were trained with a training data to test data split of 80% and 20%. Model performance was assessed with the following results:
+
+
+
+## 📄 License
 This project is licensed under the MIT License.
 
-💡 Acknowledgments
-Scikit-learn
-TensorFlow
-Matplotlib
+## 💡 Acknowledgments
+- Scikit-learn
+- TensorFlow
+- Matplotlib
